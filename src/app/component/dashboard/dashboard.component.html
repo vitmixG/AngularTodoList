@@ -1,0 +1,109 @@
+<div class="dashboard">
+  <div class="dashboard_header">
+    <h1 class="dashboard_header_title">All ToDo's</h1>
+    <div
+      class="dashboard_header_button"
+      (click)="modalOpennerAdd()"
+    >
+      <h2 class="dashboard_header_button-title">Add a ToDo</h2>
+      <span class="dashboard_header_button-svg"></span>
+    </div>
+  </div>
+
+  <div
+    class="modal_blur_container"
+    [ngClass]="{
+    modalOpen: modalAdd,
+    modalClose: !modalAdd
+  }"
+  >
+    <div class="modal modal-forAdd" [ngSwitch]="modalEdit">
+      <span class="modal_closeButton" (click)="modalOpennerAdd()"></span>
+      <h1 class="modal-forAdd_title">{{modalEdit? 'Edit a ToDo' : 'Add a ToDo'}}</h1>
+      <textarea
+        *ngSwitchCase="false"
+        placeholder="start typing..."
+        class="modal-forAdd_input"
+        [(ngModel)]= "addTaskValue"
+      ></textarea>
+      <textarea
+        *ngSwitchCase="true"
+        placeholder="start typing..."
+        class="modal-forAdd_input"
+        [(ngModel)]= "editTaskValue"
+      ></textarea>
+      <button
+        class="modal-forAdd_button"
+        [ngClass]="{
+          modalForAddButton: !addTaskValue && !editTaskValue,
+          modalForAddButtonActive: addTaskValue || editTaskValue
+        }"
+        type="button"
+        (click)="modalEdit? editTask(currentTask.id) : addTask()"
+        [disabled]="!addTaskValue && !editTaskValue"
+      >
+        {{modalEdit? 'Update ToDo' : 'Save ToDo'}}
+      </button>
+    </div>
+  </div>
+  <h2
+    class="dashboard_noTodosTitle"
+    *ngIf="tasksArr.length === 0"
+    >There not todos</h2>
+  <div
+    class="dashboard_card"
+    *ngFor="let task of tasksArr"
+  >
+    <div
+      class="modal_blur_container"
+      [ngClass]="{
+          modalOpen: modalDelete,
+          modalClose: !modalDelete
+        }"
+    >
+      <div class="modal modal-forRemove">
+        <span class="modal_closeButton" (click)="modalOpennerRemove()"></span>
+        <h1 class="modal-forRemove_title">Removing a ToDo</h1>
+        <p class="modal-forRemove_text">Are you sure you want to remove this ToDo? It would be impossible to restore it afterwards</p>
+        <p class="modal-forRemove_task">{{currentTask.title}}</p>
+        <button
+          (click)="deleteTask(currentTask.id)"
+          class="modal-forRemove_button"
+        >
+          Yes, Remove ToDo
+        </button>
+      </div>
+    </div>
+    <div class="dashboard_card-container">
+      <div class="dashboard_card-header">
+        <input
+          type="checkbox"
+          class="dashboard_card_input"
+          [checked]="task.completed"
+          (click)="editTask(task.id, !task.completed)"
+        >
+        <h1
+          class="dashboard_card_title"
+          [ngStyle]="{
+          textDecoration: task.completed ?'line-through' : 'none'
+          }"
+          >
+          {{task.title}}
+        </h1>
+      </div>
+      <div class="dashboard_card_button-container">
+        <span
+          class="dashboard_card-edit"
+          (click)="modalOpennerEdit(task.id)"
+        >
+
+        </span>
+        <span
+          class="dashboard_card-remove"
+          (click)="modalOpennerRemove(task.id)"
+        >
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,119 @@
+.register {
+  box-sizing: border-box;
+  padding: 50px;
+  height: 704px;
+  max-width: 740px;
+  margin: 0 auto 40px;
+  border: 1px solid #E1E1E1;
+  border-radius: 20px;
+
+  &_title {
+    margin: 0;
+    text-align: center;
+    font-size: 32px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+  }
+
+  &_sub-title {
+    text-align: center;
+    font-size: 16px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    margin-bottom: 50px;
+    color: #686974;
+  }
+
+  &_form {
+    &-label {
+      font-size: 16px;
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 400;
+      color: #686974;
+    }
+
+    &_error {
+      font-family: "Roboto Light", sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      text-align: left;
+      color: #E59D40;
+      margin: 0;
+    }
+
+    &_input {
+      display: block;
+      width: 300px;
+      height: 40px;
+      border: 1px solid #D9D9D9;
+      border-radius: 6px;
+      color: #30313A;
+      font-size: 16px;
+      font-family: 'Open Sans', sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      margin-bottom: 40px;
+
+      &-addressLine {
+        width: 500px;
+      }
+
+      &-suite {
+        width: 100px;
+      }
+    }
+
+    &_container {
+      margin-left: 85px;
+    }
+
+    &_submit {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 50px;
+      width: 640px;
+      color: #fff;
+      background: linear-gradient(270deg, #1EA39B 0%, #38EF7D 100%);
+      border: none;
+      border-radius: 6px;
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      position: relative;
+      cursor: pointer;
+
+      &_svg {
+        background-image: url("data:image/svg+xml,%3Csvg width='20' height='18' viewBox='0 0 20 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M19.6803 8.22294L12.4576 1.00007C12.2514 0.793895 11.9766 0.680725 11.6836 0.680725C11.3903 0.680725 11.1157 0.794057 10.9095 1.00007L10.2537 1.656C10.0477 1.86185 9.93421 2.13681 9.93421 2.42998C9.93421 2.72298 10.0477 3.00721 10.2537 3.21306L14.4673 7.43595H1.08048C0.476906 7.43595 0 7.90847 0 8.5122V9.43951C0 10.0432 0.476906 10.5634 1.08048 10.5634H14.5151L10.2539 14.8099C10.0479 15.016 9.93437 15.2835 9.93437 15.5767C9.93437 15.8695 10.0479 16.1409 10.2539 16.3469L10.9096 17.0007C11.1158 17.2069 11.3905 17.3193 11.6838 17.3193C11.9768 17.3193 12.2516 17.2055 12.4578 16.9993L19.6805 9.77658C19.8871 9.56975 20.0008 9.29366 20 9.00016C20.0006 8.7057 19.8871 8.42944 19.6803 8.22294Z' fill='white'/%3E%3C/svg%3E%0A");
+        height: 16px;
+        width: 20px;
+        position: absolute;
+        right: 16px;
+      }
+    }
+  }
+}
+
+
+.required {
+  &:after {
+    content: "*";
+    color: #686974;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  column-gap: 20px;
+
+  &_item {
+    @for $start from 1 through 6 {
+      @for $end from $start through 6 {
+        &-#{$start}-#{$end} {
+          grid-column: #{$start} / #{$end+1};
+        }
+      }
+    }
+  }
+}

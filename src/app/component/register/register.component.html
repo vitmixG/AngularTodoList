@@ -1,0 +1,151 @@
+<div class="register">
+  <div class="grid">
+    <div class="grid_item grid_item-2-5">
+      <h1 class="register_title">Create Account</h1>
+      <h2 class="register_sub-title">Let’s get productive together!</h2>
+    </div>
+  </div>
+  <form action="" class="register_form">
+    <div class="grid">
+      <div class="grid_item grid_item-1-2">
+        <label
+          for="Full-name"
+          class="register_form-label required"
+        >
+          Full Name
+        </label>
+        <input
+          type="text"
+          id="Full-name"
+          class="register_form_input"
+          [(ngModel)]="newFullName"
+          name="fullname"
+          required
+        >
+        <label
+          for="Email"
+          class="register_form-label required"
+        >
+          Email
+        </label>
+        <input
+          type="email"
+          id="Email"
+          class="register_form_input"
+          [(ngModel)]="newEmail"
+          (blur)="emailValidation(newEmail)"
+          name="Email"
+          required
+        >
+        <p *ngIf=" !isValidEmail" class="register_form_error">Please enter a valid email address</p>
+      </div>
+      <div class="grid_item grid_item-4-5">
+        <label
+          for="Username"
+          class="register_form-label required"
+        >
+          Username
+        </label>
+        <input
+          type="text"
+          id="Username"
+          class="register_form_input"
+          [(ngModel)]="newUserName"
+          name="username"
+          required
+        >
+
+        <label
+          for="phone-number"
+          class="register_form-label required"
+        >
+          Phone number
+        </label>
+        <input
+          type="text"
+          id="phone-number"
+          class="register_form_input"
+          [(ngModel)]="newPhone"
+          name="phone"
+          (blur)="blurPhoneChecked()"
+          required
+        >
+        <p *ngIf="!newPhone && isPhoneChecked" class="register_form_error">Enter your phone number</p>
+      </div>
+      <div class="grid_item grid_item-1-4">
+        <label
+          for="Address"
+          class="register_form-label required"
+        >
+          Address line
+        </label>
+        <input
+          type="text"
+          id="Address"
+          class="register_form_input-addressLine register_form_input required"
+          [(ngModel)]="newStreet"
+          name="addressLine"
+          required
+        >
+      </div>
+      <div class="grid_item grid_item-5-6 register_form_container">
+        <label
+          for="Suite"
+          class="register_form-label"
+        >
+          Suite
+        </label>
+        <input
+          type="text"
+          id="Suite"
+          class="register_form_input-suite register_form_input"
+          [(ngModel)]="newSuite"
+          name="suite"
+        >
+      </div>
+      <div class="grid_item grid_item-1-2">
+        <label
+          for="City"
+          class="register_form-label required"
+        >
+          City
+        </label>
+        <input
+          type="text"
+          id="City"
+          class="register_form_input"
+          [(ngModel)]="newCity"
+          name="city"
+          required
+        >
+      </div>
+      <div class="grid_item grid_item-4-5">
+        <label
+          for="ZIP"
+          class="register_form-label required"
+        >
+          ZIP Code
+        </label>
+        <input
+          type="text"
+          id="ZIP"
+          class="register_form_input"
+          [(ngModel)]="newZipCode"
+          name="zipcode"
+          required
+        >
+      </div>
+      <div class="grid_item grid_item-1-6">
+        <button
+          class="register_form_submit"
+          [disabled]="!isValidEmail && !newPhone && !newEmail"
+          (click)="addUser()"
+
+        >
+          Create Account
+          <span class="register_form_submit_svg"></span>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
