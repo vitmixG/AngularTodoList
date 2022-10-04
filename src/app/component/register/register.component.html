@@ -28,16 +28,18 @@
         >
           Email
         </label>
-        <input
-          type="email"
-          id="Email"
-          class="register_form_input"
-          [(ngModel)]="newEmail"
-          (blur)="emailValidation(newEmail)"
-          name="Email"
-          required
-        >
-        <p *ngIf=" !isValidEmail" class="register_form_error">Please enter a valid email address</p>
+        <div class="register_form-validation">
+          <input
+            type="email"
+            id="Email"
+            class="register_form_input validation"
+            [(ngModel)]="newEmail"
+            (blur)="emailValidation(newEmail)"
+            name="Email"
+            required
+          >
+          <p [ngStyle]="{color:!isValidEmail ? '#e59d40' : '#fff' }" class="register_form_error">Please enter a valid email address</p>
+        </div>
       </div>
       <div class="grid_item grid_item-4-5">
         <label
@@ -61,16 +63,18 @@
         >
           Phone number
         </label>
-        <input
-          type="text"
-          id="phone-number"
-          class="register_form_input"
-          [(ngModel)]="newPhone"
-          name="phone"
-          (blur)="blurPhoneChecked()"
-          required
-        >
-        <p *ngIf="!newPhone && isPhoneChecked" class="register_form_error">Enter your phone number</p>
+       <div class="register_form-validation">
+         <input
+           type="text"
+           id="phone-number"
+           class="register_form_input validation"
+           [(ngModel)]="newPhone"
+           name="phone"
+           (blur)="blurPhoneChecked()"
+           required
+         >
+         <p [ngStyle]="{color: !newPhone && isPhoneChecked || !isPhoneValid ? '#E59d40' : '#fff' }" class="register_form_error">Enter your phone number</p>
+       </div>
       </div>
       <div class="grid_item grid_item-1-4">
         <label
@@ -138,7 +142,7 @@
       <div class="grid_item grid_item-1-6">
         <button
           class="register_form_submit"
-          [disabled]="!isValidEmail && !newPhone && !newEmail"
+          [disabled]="!isValidEmail || !newPhone || !newEmail ||isPhoneValid"
           (click)="addUser()"
 
         >

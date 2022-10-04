@@ -79,18 +79,24 @@ export class DashboardComponent implements OnInit {
     });
   };
 
-  editTask(taskId: number,  isComplete: boolean = false) {
+  editTask(taskId: number,  isComplete: boolean) {
     const findTask = this.tasksArr.find(task => taskId === task.id);
+
     if (typeof findTask !== 'undefined') {
       this.currentTask = findTask
       this.currentTask.completed = isComplete;
+      const copyArr = [...this.tasksArr];
+      const findIndex = copyArr.findIndex(todo => todo.id === findTask.id)
+      copyArr[findIndex] = this.currentTask;
+      this.tasksArr = copyArr;
     }
 
     if (this.editTaskValue) {
       this.currentTask.title = this.editTaskValue;
     }
 
-    this.tasksArr = [this.currentTask, ...this.tasksArr.filter(task => task.id !== this.currentTask.id)];
+
+
     this.crudService.editTask(this.currentTask).subscribe(error => {
       console.log(error);
     });

@@ -39,7 +39,7 @@
           modalForAddButtonActive: addTaskValue || editTaskValue
         }"
         type="button"
-        (click)="modalEdit? editTask(currentTask.id) : addTask()"
+        (click)="modalEdit? editTask(currentTask.id, currentTask.completed) : addTask()"
         [disabled]="!addTaskValue && !editTaskValue"
       >
         {{modalEdit? 'Update ToDo' : 'Save ToDo'}}

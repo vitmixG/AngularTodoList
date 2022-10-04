@@ -23,6 +23,7 @@ export class RegisterComponent implements OnInit {
   newZipCode: string = '';
   submitPressed: boolean = false;
   isValidEmail: boolean = true;
+  isPhoneValid: boolean = true;
   isPhoneChecked: boolean = false;
 
   constructor(private crudService: CrudService, private router: Router) { }
@@ -52,8 +53,10 @@ export class RegisterComponent implements OnInit {
   };
 
   blurPhoneChecked() {
-    if (typeof +this.newPhone === "number" ) {
-      this.isPhoneChecked = true;
+    this.isPhoneChecked = true;
+
+    if (this.newPhone.length < 8 && typeof +this.newPhone !== "number") {
+      this.isPhoneValid = false;
     }
   }
 

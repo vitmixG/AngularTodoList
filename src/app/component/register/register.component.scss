@@ -37,7 +37,6 @@
       font-size: 14px;
       font-weight: 400;
       text-align: left;
-      color: #E59D40;
       margin: 0;
     }
 
@@ -54,6 +53,7 @@
       font-weight: 400;
       margin-bottom: 40px;
 
+
       &-addressLine {
         width: 500px;
       }
@@ -61,6 +61,10 @@
       &-suite {
         width: 100px;
       }
+    }
+
+    &-validation {
+      margin-bottom: 5px;
     }
 
     &_container {
@@ -92,6 +96,10 @@
       }
     }
   }
+}
+
+.validation {
+  margin-bottom: 7px;
 }
 
 
